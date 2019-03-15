@@ -34,13 +34,26 @@ namespace math {
 		return (Result);	
 	}
 
+	mat4 mat4::Scale(float UniformScale)
+	{
+		mat4 Result;
+
+		Result.Elements[0 + 0*4] = UniformScale;
+		Result.Elements[1 + 1*4] = UniformScale;
+		Result.Elements[2 + 2*4] = UniformScale;
+		Result.Elements[3 + 3*4] = 1.0f;
+
+		return (Result);
+	}
+	
+
 	mat4 mat4::Rotate(float Angle, vec3 Axis)
 	{
 		mat4 Result;
 
-		float Radians = Angle * PI / 180.0f;
-		float Cos = cos(Radians);
-		float Sin = sin(Radians);
+		float Radians = Angle * (float)PI / 180.0f;
+		float Cos = cosf(Radians);
+		float Sin = sinf(Radians);
 		Axis.Normalize();
 
 		Result.Elements[0 + 0*4] = Axis.x*Axis.x*(1.0f-Cos) + Cos;
@@ -89,9 +102,23 @@ namespace math {
 		return(Result);
 	}
 
+	mat4 mat4::Ortho(float Bottom, float Top, float Left, float Right, float Near, float Far)
+	{
+		mat4 Result;
+		Result.Elements[0 + 0*4] = 2.0f/(Right - Left);
+		Result.Elements[1 + 1*4] = 2.0f/(Top - Bottom);
+		Result.Elements[2 + 2*4] = -2.0f/(Far - Near);
+		Result.Elements[0 + 3*4] = -(Right + Left)/(Right - Left);
+		Result.Elements[1 + 3*4] = -(Top + Bottom)/(Top - Bottom);
+		Result.Elements[2 + 3*4] = -(Far + Near)/(Far - Near);
+		Result.Elements[3 + 3*4] = 1;
+
+		return(Result);
+	}
+
 	mat4 mat4::Perspective(float FoV, float ImageAspectRation, float Near, float Far)
 	{
-		float Scale = tanf(FoV * 0.5f * PI  / 180.0f) * Near;
+		float Scale = tanf(FoV * 0.5f * (float)PI  / 180.0f) * Near;
 		float Right = ImageAspectRation*Scale; 
 		float Left = -Right;
 		float Top = Scale;
