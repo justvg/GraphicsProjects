@@ -156,4 +156,16 @@ namespace math {
 		return(Result);
 	}
 
+	vec4 operator*(mat4 A, vec4 B)
+	{
+		vec4 Result;
+
+		Result.x = A.Elements[0 + 0*4] * B.x + A.Elements[0 + 1*4] * B.y + A.Elements[0 + 2*4] * B.z + A.Elements[0 + 3*4] * B.w;
+		Result.y = A.Elements[1 + 0*4] * B.x + A.Elements[1 + 1*4] * B.y + A.Elements[1 + 2*4] * B.z + A.Elements[1 + 3*4] * B.w;
+		Result.z = A.Elements[2 + 0*4] * B.x + A.Elements[2 + 1*4] * B.y + A.Elements[2 + 2*4] * B.z + A.Elements[2 + 3*4] * B.w;
+		Result.w = A.Elements[3 + 0*4] * B.x + A.Elements[3 + 1*4] * B.y + A.Elements[3 + 2*4] * B.z + A.Elements[3 + 3*4] * B.w;
+
+		return(Result);
+	}
+
 }}

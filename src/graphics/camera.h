@@ -17,6 +17,9 @@ namespace camera {
 			vec3 Front;
 			vec3 UpAxis; // NOTE(george): usually its value is (0.0f, 1.0f, 0.0f)
 
+			float MovSpeed;
+			float RotSensitivity;
+
 			float Pitch;
 			float Head;
 	};

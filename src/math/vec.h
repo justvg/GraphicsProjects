@@ -50,7 +50,14 @@ namespace math {
 
 	struct vec4
 	{
-		float x, y, z, w;
+		union 
+		{
+			struct 
+			{
+				float x, y, z, w;
+			};
+			float E[4];
+		};
 		
 		vec4();
 		vec4(float X, float Y, float Z, float W);

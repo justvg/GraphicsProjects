@@ -21,6 +21,7 @@ namespace math {
 		static mat4 Perspective(float FoV, float ImageAspectRation, float Near, float Far);
 
 		friend mat4 operator*(mat4 A, mat4 B);
+		friend vec4 operator*(mat4 A, vec4 B);
 	};
 
 }}

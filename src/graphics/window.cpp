@@ -35,7 +35,7 @@ namespace graphics {
 		glewInit();
 
 		glEnable(GL_DEPTH_TEST);
-		glDisable(GL_CULL_FACE);
+		glEnable(GL_CULL_FACE);
 		
 		glfwSetInputMode(Window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 	}
@@ -68,7 +68,7 @@ namespace graphics {
 			glfwSetWindowShouldClose(Window, true);
 		}
 
-		float CameraSpeed = DeltaTime*2.0f;
+		float CameraSpeed = DeltaTime*Camera.MovSpeed;
 		if(Input.IsKeyPressed(GLFW_KEY_W))
 		{
 			Camera.Position += CameraSpeed*Camera.Front;
@@ -98,9 +98,8 @@ namespace graphics {
 			FirstMouse = false;
 		}
 
-		float Sensitivity = 0.1f;
-		float XOffset = (float)((X - LastMouseX)*Sensitivity);
-		float YOffset = (float)((LastMouseY - Y)*Sensitivity);
+		float XOffset = (float)((X - LastMouseX)*Camera.RotSensitivity);
+		float YOffset = (float)((LastMouseY - Y)*Camera.RotSensitivity);
 
 		Camera.Pitch += YOffset;
 		Camera.Head += XOffset;
